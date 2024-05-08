@@ -1,4 +1,4 @@
-# loginauth
+# Notes app
 
 A new Flutter project.
 
