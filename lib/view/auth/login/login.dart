@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loginauth/controller/auth/logincontroller.dart';
 
-import '../../../controller/auth/signupcontroller.dart';
 import '../../../core/constants/appcolors.dart';
-import '../../reusable/button.dart';
+import '../../../core/constants/appimages.dart';
 import '../../reusable/authWidgets.dart';
+import '../../reusable/button.dart';
 import '../../reusable/customformfield.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+class Login extends StatelessWidget {
+  const Login({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => SignUpController());
+    Get.lazyPut(() => LoginController());
     return Scaffold(
       body: SafeArea(
-        child: GetBuilder<SignUpController>(builder: (controller) {
+        child: GetBuilder<LoginController>(builder: (controller) {
           return Padding(
             padding: const EdgeInsets.all(20.0),
             child: ListView(
@@ -23,9 +24,15 @@ class SignUpScreen extends StatelessWidget {
                 SizedBox(
                   height: Get.height / 50,
                 ),
+                const LogoContainer(
+                  imageName: ImagesAssets.logo,
+                ),
+                SizedBox(
+                  height: Get.height / 50,
+                ),
                 Text(
                   textAlign: TextAlign.center,
-                  '18'.tr, // welcome
+                  '1'.tr, // welcome back
                   style: const TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 30,
@@ -33,29 +40,17 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 Text(
                   textAlign: TextAlign.center,
-                  '13'.tr, //please lsignup ....
+                  '2'.tr, //please login to get to your notes
                   style: const TextStyle(color: AppColors.textColor),
                 ),
                 SizedBox(
                   height: Get.height / 50,
                 ),
-                FieldName(text: '15'.tr),
-                CustomFormField(
-                  hintTxt: '15'.tr, //username
-                  txtController: controller.passwordController,
-                  isPassword: true,
-                  iconData: Icons.remove_red_eye,
-                  // onTapPass: controller.showPass(),
-                ),
-                SizedBox(
-                  height: Get.height / 60,
-                ),
-                FieldName(text: '3'.tr),
-                //email
+                FieldName(text: '3'.tr), //email
                 CustomFormField(
                     hintTxt: '4'.tr, txtController: controller.emailController),
                 SizedBox(
-                  height: Get.height / 60,
+                  height: Get.height / 50,
                 ),
                 FieldName(text: '5'.tr), //password
                 CustomFormField(
@@ -63,48 +58,37 @@ class SignUpScreen extends StatelessWidget {
                   txtController: controller.passwordController,
                   isPassword: true,
                   iconData: Icons.remove_red_eye,
-                  // onTapPass: controller.showPass(),
+                  onTapPass: controller.showPass(),
                 ),
-                SizedBox(
-                  height: Get.height / 60,
-                ),
-                FieldName(text: '16'.tr),
-                CustomFormField(
-                  hintTxt: '6'.tr, //confirm pass
-                  txtController: controller.passwordController,
-                  isPassword: true,
-                  iconData: Icons.remove_red_eye,
-                  // onTapPass: controller.showPass(),
-                ),
-                SizedBox(
-                  height: Get.height / 30,
+                ForgetPasswordBtn(
+                  text: '7'.tr,
                 ),
                 CustomButton(
-                  //Signup button
-                  onPressed: controller.signup(),
-                  btnTxt: '14'.tr,
+                  //login button
+                  onPressed: controller.login(),
+                  btnTxt: '9'.tr,
                 ),
                 SizedBox(
                   height: Get.height / 40,
                 ),
-                OrWithDivider(text: '10'.tr), //or
+                OrWithDivider(text: '10'.tr),
                 SizedBox(
                   height: Get.height / 60,
                 ),
                 //icons for other login types
                 SocialMediaLogos(
-                  onApplePressed: controller.signupWithApple(),
-                  onGooglePressed: controller.signupWithGoogle(),
-                  onFacebookPressed: controller.signupWithFacebook(),
+                  onApplePressed: controller.loginWithApple(),
+                  onGooglePressed: controller.loginWithGoogle(),
+                  onFacebookPressed: controller.loginWithFacebook(),
                 ),
                 SizedBox(
                   height: Get.height / 30,
                 ),
                 TwoTextRowWithTxtBtn(
-                  firstTxt: '17'.tr,
-                  secondTxt: '9'.tr,
+                  firstTxt: '11'.tr,
+                  secondTxt: '12'.tr,
                   secondTxtPressed: () {
-                    controller.goToLogin();
+                    controller.goToSignUp();
                   },
                 ),
               ],
